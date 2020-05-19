@@ -15,6 +15,10 @@ dataset = pd.read_csv('aapl_msi_sbux.csv')
 #getting a random sample
 start = np.random.randint(1000,1030)
 sample = dataset.iloc[start:start+30,2].values
+
+#Saving the real data
+dataset.iloc[start+1:start+6,2].to_csv("subx_real.csv")
+
 sample = scaler.fit_transform(sample.reshape(-1,1))
 sample = sample.reshape(sample.shape[0],1,sample.shape[1])
 
@@ -25,4 +29,3 @@ prediction = scaler.inverse_transform(prediction)
 dataframe = pd.DataFrame(list(enumerate(prediction.reshape(-1))),columns = ['Day','Price'])
 
 dataframe.to_csv("sbux_forecast.csv")
-dataframe.to_json("sbux_forecast.json")

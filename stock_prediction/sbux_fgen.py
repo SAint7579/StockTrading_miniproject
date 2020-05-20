@@ -14,7 +14,7 @@ dataset = pd.read_csv('aapl_msi_sbux.csv')
 
 #getting a random sample
 start = np.random.randint(1000,1030)
-sample = dataset.iloc[start:start+30,2].values
+sample = dataset.iloc[start:start+10,2].values
 
 #Saving the real data
 dataset.iloc[start+1:start+6,2].to_csv("subx_real.csv")

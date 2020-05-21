@@ -15,8 +15,8 @@ db = client.Apple
 stock_prices = db.stock_prices
 #Getting the stock values
 prices_apple = []
-for x in stock_prices.find():
-    prices_apple.append(x['stock_price'])
+for x in stock_prices.find({'stock_type': 'COMMON_STOCK'}):
+    prices_apple.append(x['stock_price']/72.3)
     
 prices_apple = pd.DataFrame(prices_apple,columns=["AAPL"])
 
@@ -26,8 +26,8 @@ db = client.MSI
 stock_prices = db.stock_prices
 #Getting the stock values
 prices_msi = []
-for x in stock_prices.find():
-    prices_msi.append(x['stock_price'])
+for x in stock_prices.find({'stock_type': 'COMMON_STOCK'}):
+    prices_msi.append(x['stock_price']/72.3)
     
 prices_msi = pd.DataFrame(prices_msi,columns=["MSI"])
 
@@ -37,8 +37,8 @@ db = client.Starbucks
 stock_prices = db.stock_prices
 #Getting the stock values
 prices_sbux = []
-for x in stock_prices.find():
-    prices_sbux.append(x['stock_price'])
+for x in stock_prices.find({'stock_type': 'COMMON_STOCK'}):
+    prices_sbux.append(x['stock_price']/72.3)
     
 prices_sbux = pd.DataFrame(prices_sbux,columns=["SBUX"])
 
@@ -48,11 +48,12 @@ stock_prices = pd.concat([prices_apple,prices_msi,prices_sbux],axis=1)
 dataset = stock_prices.copy()
 
 #Map Reduce for Momentum
+
 momentum = []
 name = ["AAPL" , "MSI" , "SBUX"]
 for i in range(3):
     #Getting the dataset
-    current = dataset.iloc[:300,i].values
+    current = dataset.iloc[-100:,i].values
     current = current.reshape((-1,10))
     
     current = list(

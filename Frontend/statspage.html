@@ -1,0 +1,349 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <style>
+          pre {
+            display: none;
+            }
+      </style>
+      <style>
+        #grad {
+            background-image: linear-gradient(to bottom right, #35475e, #35475e);
+        }
+    </style>
+    
+    <style>
+        #zidx {
+        z-index: 505;
+        z-index: 3;
+        z-index: 289;
+        z-index: 1;
+        }
+    </style>
+</head> 
+<body> 
+
+<div id="grad" style="height:100%;padding:20px">
+<div class="jumbotron text-center">
+  <h1>Visualization</h1>
+  <p>Using D3.js</p> 
+</div>
+
+<div class="container pt-3" style="background-color:white;">
+    <p > <h3 style="text-align:center"><b>Stock : Apple Stock</b></h3> </p>
+    <div class="row pt-3">
+        <div class="mt-2 col-md-6 p-3"  >
+            <p style="text-align:center "> <b>Actual Stock Prices</b> </p>
+            <div id="svg1"></div>
+        </div>
+        <div class="mt-2 col-md-6 p-3"  >
+            <p style="text-align:center"> <b>Predicted Stock Prices</b> </p>
+            <div id="svg2"></div>
+        </div>
+            
+    </div>
+    <div id="pie1" style="text-align: center;"></div>
+</div>
+
+<br>
+<br>
+
+<div class="container pt-3 " style="background-color:white;">
+    <p > <h3 style="text-align:center"><b>Stock : MSI</b></h3> </p>
+    <div class="row pt-3">
+        
+        <div class="mt-2 col-md-6 p-3"  >
+            <p style="text-align:center "> <b>Actual Stock Prices</b> </p>
+            <div id="svg3"></div>
+        </div>
+        <div class="mt-2 col-md-6 p-3" >
+            <p style="text-align:center"> <b>Predicted Stock Prices</b> </p>
+            <div id="svg4"></div>
+        </div>
+            
+    </div>
+    <div id="pie2" style="text-align: center;"></div>
+</div>
+
+
+<br>
+<br>
+
+<div class="container pt-3 " style="background-color:white;">
+    <p > <h3 style="text-align:center"><b>Stock : Starbucks</b></h3> </p>
+    <div class="row pt-3">
+        
+        <div class="mt-2 col-md-6 p-3"  >
+            <p style="text-align:center "> <b>Actual Stock Prices</b> </p>
+            <div id="svg5"></div>
+        </div>
+        <div class="mt-2 col-md-6 p-3" >
+            <p style="text-align:center"> <b>Predicted Stock Prices</b> </p>
+            <div id="svg6"></div>
+        </div>
+    </div>
+    
+    <div id="pie3" style="text-align: center;"></div>
+</div>
+
+<br>
+<br>
+
+<div class="jumbotron text-center">
+  <h1>Visualization</h1>
+  <p>Using Amcharts.js</p> 
+</div>
+
+
+<br>
+<br>
+<div class="container pt-3" style="background-color:white;"> 
+<p > <h3 style="text-align:center"><b>Stock : Apple</b></h3> </p>
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="http://creationdevs.in/bda/apple.html"></iframe>
+</div>
+</div>
+
+<br>
+<br> 
+<div class="container pt-3" style="background-color:white;"> 
+<p > <h3 style="text-align:center"><b>Stock : MSI</b></h3> </p>
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="http://creationdevs.in/bda/msi.html"></iframe>
+</div>
+</div>
+
+<br>
+<br>
+
+<div class="container pt-3" style="background-color:white;"> 
+<p > <h3 style="text-align:center"><b>Stock : Starbucks</b></h3> </p>
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="http://creationdevs.in/bda/starbucks.html"></iframe>
+</div>
+</div>
+
+</div>
+
+
+
+<pre id="data1">name,value
+22/05/19,138.99
+23/05/19,140.46
+24/05/19,140.69
+25/05/19,139.99
+26/05/19,141.46
+</pre>
+<pre id="data3">name,value
+22/05/19,81.0
+23/05/19,81.6
+24/05/19,81.73
+25/05/19,77.34
+26/05/19,78.25
+</pre>
+<pre id="data5">name,value
+22/05/19,55.81
+23/05/19,56.22
+24/05/19,56.11
+25/05/19,56.58
+26/05/19,56.86
+</pre>
+<pre id="data2">name,value
+22/05/19,140.3610076904297
+23/05/19,140.3610076904297
+24/05/19,140.46043395996094
+25/05/19,140.6802978515625
+26/05/19,140.36428833007812
+27/05/19,141.14797973632812
+28/05/19,140.36195373535156
+29/05/19,141.14453125
+30/05/19,140.94808959960938
+31/05/19,140.6204376220703
+</pre>
+<pre id="data4">name,value
+22/05/19,80.12570190429688
+23/05/19,81.02412414550781
+24/05/19,81.59015655517578
+25/05/19,81.6346664428711
+26/05/19,80.08133697509766
+27/05/19,80.08134460449219
+28/05/19,80.08133697509766
+29/05/19,80.08135223388672
+30/05/19,80.08136749267578
+31/05/19,80.0814208984375
+</pre>
+<pre id="data6">name,value
+22/05/19,56.1910285949707
+23/05/19,56.19911193847656
+24/05/19,56.263771057128906
+25/05/19,56.23220443725586
+26/05/19,56.550350189208984
+27/05/19,56.9116096496582
+28/05/19,56.75065612792969
+29/05/19,57.16440200805664
+30/05/19,57.181278228759766
+31/05/19,57.182716369628906
+</pre>
+
+
+<p style="position: absolute;  left: 600px;  top: 700px;  z-index: 1;">Over-Shot </br> 31% </p>
+<p style="position: absolute;  left: 600px;  top: 600px;  z-index: 1;">Under-Shot </br> 19% </p>
+<p style="position: absolute;  left: 700px;  top: 650px;  z-index: 1;">Accuracy </br> 49% </p>
+<pre id="piedata1">{a: 50, b: 20, c:30}</pre>
+
+<p style="position: absolute;  left: 600px;  top: 1183px;  z-index: 1;">Over-Shot </br> 21% </p>
+<p style="position: absolute;  left: 580px;  top: 1250px;  z-index: 1;">Under-Shot </br> 17% </p>
+<p style="position: absolute;  left: 700px;  top: 1250px;  z-index: 1;">Accuracy </br> 62% </p>
+<pre id="piedata2">{d: 40, e: 10, z:10}</pre>
+
+<p style="position: absolute;  left: 635px;  top: 1750px;  z-index: 1;">Over- </br> Shot </br> 13% </p>
+<p style="position: absolute;  left: 580px;  top: 1825px;  z-index: 1;">Under-Shot </br> 15% </p>
+<p style="position: absolute;  left: 700px;  top: 1825px;  z-index: 1;">Accuracy </br> 71% </p>
+<pre id="piedata3">{a: 60, b: 20, c:10}</pre>
+    
+
+
+<script>
+
+draw("#svg1", "#data1");
+draw("#svg2", "#data2");
+draw("#svg3", "#data3");
+draw("#svg4", "#data4");
+draw("#svg5", "#data5");
+draw("#svg6", "#data6");
+pie("#pie1","#piedata1");
+pie("#pie2","#piedata2");
+pie("#pie3","#piedata3");
+
+function draw(selector, url){
+
+var data = d3.csvParse(d3.select(url).text())
+//var data = d3.csv(d3.select(url).text())
+var width = 500, margin = 200,
+    height = 150;
+
+var svg = d3.select(selector)
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("margin", margin);
+
+var xScale = d3.scalePoint()
+    .domain(data.map(function(d) {
+        return d.name
+    }))
+    .range([50, width - 50])
+    .padding(0.5);
+
+var yScale = d3.scaleLinear()
+    .domain([d3.min(data, function(d) {return d.value}) * 0.999, d3.max(data, function(d) {return d.value}) * 1.0001])
+    .range([height - 20, 6]);
+
+var line = d3.line()
+	.x(function(d){ return xScale(d.name)})
+	.y(function(d){ return yScale(d.value)});
+	
+svg.append("path")
+	.attr("d", line(data))
+	.attr("stroke", "teal")
+	.attr("stroke-width", "2")
+	.attr("fill", "none");
+
+var xAxis = d3.axisBottom(xScale);
+var yAxis = d3.axisLeft(yScale);
+
+svg.append("g").attr("transform", "translate(0,130)")
+    .attr("class", "xAxis")
+    .call(xAxis);
+
+svg.append("g")
+    .attr("transform", "translate(50,0)")
+    .attr("class", "yAxis")
+    .call(yAxis);
+
+}
+    
+    
+    
+
+    
+    
+function pie(selector,url){
+
+// set the dimensions and margins of the graph
+var width = 300
+    height = 300
+    margin = 40
+
+// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+var radius = Math.min(width, height) / 2 - margin
+
+// append the svg object to the div called 'my_dataviz'
+var svg = d3.select(selector)
+  .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+// Create dummy data
+//var data = {a: 9, b: 20, c:30, d:8, e:12}
+var data = d3.select(url).text()
+
+// set the color scale
+var color = d3.scaleOrdinal()
+  .domain(data)
+  .range(d3.schemeSet2);
+
+// Compute the position of each group on the pie:
+var pie = d3.pie()
+  .value(function(d) {return d.value; })
+var data_ready = pie(d3.entries(data))
+// Now I know that group A goes from 0 degrees to x degrees and so on.
+
+// shape helper to build arcs:
+var arcGenerator = d3.arc()
+  .innerRadius(0)
+  .outerRadius(radius)
+
+// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+svg
+  .selectAll('mySlices')
+  .data(data_ready)
+  .enter()
+  .append('path')
+    .attr('d', arcGenerator)
+    .attr('fill', function(d){ return(color(d.data.key)) })
+    .attr("stroke", "black")
+    .style("stroke-width", "2px")
+    .style("opacity", 0.7)
+
+// Now add the annotation. Use the centroid method to get the best coordinates
+/*svg
+  .selectAll('mySlices')
+  .data(data_ready)
+  .enter()
+  .append('text')
+  .text(function(d){ return "grp " + d.data.key})
+  .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+  .style("text-anchor", "middle")
+  .style("font-size", 17)
+*/
+
+    
+}
+    
+    
+    
+    
+    
+</script>
+
+
+</body> 

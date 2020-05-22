@@ -1,0 +1,17 @@
+[
+    {
+       "date": "1-jan-12",
+       "close": "5"
+   }, {
+       "date": "2-jan-12",
+       "close": "100"
+   }, {
+       "date": "3-jan-12",
+       "close": "150"
+   }, {
+       "date": "4-jan-12",
+       "close": "90"
+   }, {
+       "date": "5-jan-12",
+       "close": 79
+   }]

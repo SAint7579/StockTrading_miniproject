@@ -1,0 +1,67 @@
+<style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+</style>
+
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+chart.paddingRight = 20;
+
+chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.renderer.grid.template.location = 0;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+
+var series = chart.series.push(new am4charts.CandlestickSeries());
+series.dataFields.dateX = "Date";
+series.dataFields.valueY = "Close";
+series.dataFields.openValueY = "Open";
+series.dataFields.lowValueY = "Low";
+series.dataFields.highValueY = "High";
+series.simplifiedProcessing = true;
+series.tooltipText = "Open:${openValueY.value}\nLow:${lowValueY.value}\nHigh:${highValueY.value}\nClose:${valueY.value}";
+
+chart.cursor = new am4charts.XYCursor();
+
+// a separate series for scrollbar
+var lineSeries = chart.series.push(new am4charts.LineSeries());
+lineSeries.dataFields.dateX = "Date";
+lineSeries.dataFields.valueY = "Close";
+// need to set on default state, as initially series is "show"
+lineSeries.defaultState.properties.visible = false;
+
+// hide from legend too (in case there is one)
+lineSeries.hiddenInLegend = true;
+lineSeries.fillOpacity = 0.5;
+lineSeries.strokeOpacity = 0.5;
+
+var scrollbarX = new am4charts.XYChartScrollbar();
+scrollbarX.series.push(lineSeries);
+chart.scrollbarX = scrollbarX;
+
+chart.data = [{"Date":"2020-03-23","Open":57.23,"High":57.439999,"Low":54.0,"Close":56.549999},{"Date":"2020-03-24","Open":62.610001,"High":65.160004,"Low":61.0,"Close":64.879997},{"Date":"2020-03-25","Open":66.830002,"High":69.639999,"Low":63.490002,"Close":65.809998},{"Date":"2020-03-26","Open":66.709999,"High":71.580002,"Low":66.25,"Close":69.900002},{"Date":"2020-03-27","Open":66.68,"High":68.25,"Low":64.82,"Close":66.339996},{"Date":"2020-03-30","Open":66.559998,"High":68.220001,"Low":64.580002,"Close":67.860001},{"Date":"2020-03-31","Open":67.18,"High":68.32,"Low":65.309998,"Close":65.739998},{"Date":"2020-04-01","Open":63.0,"High":64.760002,"Low":61.580002,"Close":62.619999},{"Date":"2020-04-02","Open":65.75,"High":68.699997,"Low":62.91,"Close":65.0},{"Date":"2020-04-03","Open":64.470001,"High":64.75,"Low":60.900002,"Close":63.049999},{"Date":"2020-04-06","Open":66.269997,"High":68.339996,"Low":64.410004,"Close":67.790001},{"Date":"2020-04-07","Open":71.57,"High":72.480003,"Low":68.330002,"Close":68.709999},{"Date":"2020-04-08","Open":69.580002,"High":71.919998,"Low":68.540001,"Close":71.57},{"Date":"2020-04-09","Open":71.199997,"High":74.260002,"Low":70.139999,"Close":73.879997},{"Date":"2020-04-13","Open":73.519997,"High":73.599998,"Low":70.349998,"Close":71.760002},{"Date":"2020-04-14","Open":73.690002,"High":74.330002,"Low":72.660004,"Close":73.669998},{"Date":"2020-04-15","Open":72.010002,"High":73.18,"Low":70.709999,"Close":72.550003},{"Date":"2020-04-16","Open":73.110001,"High":73.760002,"Low":71.349998,"Close":73.510002},{"Date":"2020-04-17","Open":76.620003,"High":77.389999,"Low":74.970001,"Close":77.099998},{"Date":"2020-04-20","Open":76.019997,"High":76.980003,"Low":75.080002,"Close":75.32},{"Date":"2020-04-21","Open":73.400002,"High":73.959999,"Low":71.739998,"Close":72.720001},{"Date":"2020-04-22","Open":74.550003,"High":78.059998,"Low":74.43,"Close":77.449997},{"Date":"2020-04-23","Open":77.330002,"High":77.669998,"Low":74.260002,"Close":75.150002},{"Date":"2020-04-24","Open":75.75,"High":76.029999,"Low":74.209999,"Close":75.580002},{"Date":"2020-04-27","Open":76.68,"High":78.040001,"Low":76.540001,"Close":77.739998},{"Date":"2020-04-28","Open":78.669998,"High":79.610001,"Low":76.959999,"Close":78.690002},{"Date":"2020-04-29","Open":78.18,"High":78.75,"Low":76.720001,"Close":76.860001},{"Date":"2020-04-30","Open":76.830002,"High":77.639999,"Low":75.190002,"Close":76.730003},{"Date":"2020-05-01","Open":74.900002,"High":75.879997,"Low":73.209999,"Close":73.790001},{"Date":"2020-05-04","Open":72.580002,"High":72.620003,"Low":71.260002,"Close":71.889999},{"Date":"2020-05-05","Open":74.959999,"High":75.080002,"Low":72.889999,"Close":72.900002},{"Date":"2020-05-06","Open":73.769997,"High":74.849998,"Low":72.860001,"Close":72.959999},{"Date":"2020-05-07","Open":73.809998,"High":76.029999,"Low":73.370003,"Close":76.0},{"Date":"2020-05-08","Open":77.25,"High":77.93,"Low":75.760002,"Close":77.870003},{"Date":"2020-05-11","Open":76.620003,"High":77.18,"Low":75.800003,"Close":75.870003},{"Date":"2020-05-12","Open":76.0,"High":76.730003,"Low":74.339996,"Close":74.349998},{"Date":"2020-05-13","Open":74.459999,"High":75.75,"Low":72.919998,"Close":73.620003},{"Date":"2020-05-14","Open":72.32,"High":74.290001,"Low":70.650002,"Close":74.190002},{"Date":"2020-05-15","Open":72.809998,"High":74.639999,"Low":72.669998,"Close":74.160004},{"Date":"2020-05-18","Open":76.860001,"High":77.5,"Low":76.199997,"Close":76.230003},{"Date":"2020-05-19","Open":76.400002,"High":77.220001,"Low":75.760002,"Close":75.860001},{"Date":"2020-05-20","Open":77.230003,"High":77.839996,"Low":76.519997,"Close":77.760002}];
+}); // end am4core.ready()
+
+
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
